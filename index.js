@@ -1,8 +1,6 @@
 var cart = [];
 
 function addToCart(item){
-  const price = Math.floor(Math.random() * 100);
-    cart.push({[item]: price});
 }
 
 function viewCart(){
