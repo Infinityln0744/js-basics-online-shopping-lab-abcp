@@ -13,7 +13,7 @@ return cart;
 }
 
 function viewCart(){
-  if 
+  if (cart )
   
 }
 
