@@ -13,48 +13,44 @@ function addToCart(item) {
 }
 
 function viewCart() {
-  const l = cart.length
+  if (cart.length === 0){
+   console.log("Your shopping cart is empty.")
+  } else {
+     var itemsAndPrices = [];
 
-  if (!l) {
-    return console.log("In your cart, you have bananas at $17, pancake batter at $5, and eggs at $49.")
-    
-}
- 
- const itemsAndPrices = []
-
- for (let i = 0; i < l; i++) {
-   let itemAndPrice = cart[i]
-    let item = Object.keys(itemAndPrice)[0]
-   let price = itemAndPrice[item]
-   
-    itemsAndPrices.push(`${item} at \$${price}`)
- }
-
-  console.log(`In your cart, you have ${itemsAndPrices.join(', ')}.`)
-}
-
-function removeFromCart(item) {
-  let itemInCart = false
-
-  for (let i = 0, l = cart.length; i < l; i++) {
-   if (cart[i].hasOwnProperty(item)) {
-     itemInCart = true
-     cart = cart.slice(0, i).concat(cart.slice(i + 1))
- }
-}
-
-  if (!itemInCart) {
-    console.log("That item is not in your cart.")
-}
-
- return cart
-}
-
-function placeOrder(cardNumber){
- if (!cardNumber) {
-    return console.log("Sorry, we don't have a credit card on file for you.")
+    for (var i in cart){
+      var itemAndPrice = cart[i];
+          for (var key in itemAndPrice){
+      itemsAndPrices.push(key + " at $" + itemAndPrice[key])
+     }
   }
-  console.log(`Your total cost is $${total()}, which will be charged to the card ${cardNumber}.`)
+    var cartItems = itemsAndPrices.join(", ");
+     console.log("In your cart, you have " + cartItems ".")
+   }
+ }
 
-cart = []
+ function removeFromCart(item){
+  let itemInCart = false
+    for(let i = 0, l = cart.length; i < l; i++){
+    if(cart[i].hasOwnProperty(item)){
+      let index = cart.lastIndexOf(item)
+      cart.splice(index, 1)
+    itemInCart = true
+      return cart;
+   }
 }
+
+ if(itemInCart === false){
+    console.log("That item is not in your cart.")
+ }
+}
+
+function placeOrder(cc){
+ if(!cc){
+    console.log("We don't have a credit card on file for you to place your order.")
+ }
+
+ console.log(`Your total cost is $${total()}, which will be charged to the card ${cc}.`)
+  cart = []
+}
+
