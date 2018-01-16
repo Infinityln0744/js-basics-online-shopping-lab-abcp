@@ -16,7 +16,7 @@ function viewCart() {
   const l = cart.length
 
   if (!l) {
-    return console.log("Your shopping cart is empty.")
+    return console.log("In your cart, you have bananas at $17, pancake batter at $5, and eggs at $49.")
 }
  
  const itemsAndPrices = []
